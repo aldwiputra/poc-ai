@@ -1,7 +1,7 @@
 import { Container } from '@mui/material';
 import { useEffect, useState } from 'react';
 import './App.css';
-import { Typography, Button, Box, Grid, IconButton, FormControlLabel, Switch, TextField } from '@mui/material';
+import { Button, Box, Grid, IconButton } from '@mui/material';
 import ChatMessages from './ChatMessages';
 import MicRecorder from 'mic-recorder-to-mp3';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
@@ -48,7 +48,7 @@ const mockMessages = [
   {
     role: 'assistant',
     content: 'Hello, how can I help you today?',
-    text: "I'm good today, how can I help you?",
+    text: 'Hi, there!',
   },
 ];
 
