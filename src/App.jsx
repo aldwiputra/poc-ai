@@ -62,59 +62,6 @@ function App() {
     return list.map(({ role, content }) => ({ role, content }));
   }
 
-  // const handleSendMessage = async () => {
-  //   if (message.trim() !== '') {
-  //     // Send the message to the chat
-
-  //     // Add the new message to the chat area
-  //     setMessages((prevMessages) => [...prevMessages, { role: 'user', content: message, text: message, audio: null }]);
-
-  //     // Clear the input field
-  //     setMessage('');
-
-  //     // Add thinking bubble
-  //     setMessages((prevMessages) => [
-  //       ...prevMessages,
-  //       {
-  //         role: 'assistant',
-  //         content: <ThinkingBubble theme={theme} sx={{ marginBottom: '-5px' }} />,
-  //         text: <ThinkingBubble theme={theme} sx={{ marginBottom: '-5px' }} />,
-  //         key: 'thinking',
-  //       },
-  //     ]);
-
-  //     // Create backend chat input
-  //     let messageObjects = filterMessageObjects(messages);
-  //     messageObjects.push({ role: 'user', content: message });
-
-  //     // Create endpoint for just getting the completion
-  //     try {
-  //       // Send the text message to the backend
-  //       // const response = await fetch('localhost:8000/test', {
-  //       //   method: 'POST',
-  //       //   mode: 'cors',
-  //       //   headers: {
-  //       //     'Content-Type': 'application/json',
-  //       //   },
-  //       //   body: {
-  //       //     text: message,
-  //       //     messages: messageObjects,
-  //       //     isAudioResponse,
-  //       //   },
-  //       // });
-
-  //       // Remove the thinking bubble
-  //       setMessages((prevMessages) => {
-  //         return prevMessages.filter((message) => message.key !== 'thinking');
-  //       });
-  //       // handleBackendResponse(response); // Add function call
-  //     } catch (error) {
-  //       console.error('Error sending text message:', error);
-  //       alert(error);
-  //     }
-  //   }
-  // };
-
   const handleBackendResponse = ({ data }, id = null) => {
     console.log(data);
     const generatedText = data.generated_text;
@@ -192,14 +139,6 @@ function App() {
           setMessages={setMessages}
           handleBackendResponse={handleBackendResponse}
         />
-        {/* <MessageInput
-        message={message}
-        setMessage={setMessage}
-        isAudioResponse={isAudioResponse}
-        handleSendMessage={handleSendMessage}
-        handleBackendResponse={handleBackendResponse}
-      />
-      <ResponseFormatToggle isAudioResponse={isAudioResponse} setIsAudioResponse={setIsAudioResponse} /> */}
       </Container>
     </ThemeProvider>
   );
@@ -291,21 +230,6 @@ const AudioControls = ({ isAudioResponse, handleBackendResponse, filterMessageOb
   );
 };
 
-// const ResponseFormatToggle = ({ isAudioResponse, setIsAudioResponse }) => {
-//   const handleToggleChange = (event) => {
-//     setIsAudioResponse(event.target.checked);
-//   };
-
-//   return (
-//     <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}>
-//       <FormControlLabel
-//         control={<Switch checked={isAudioResponse} onChange={handleToggleChange} color='primary' />}
-//         label='Audio response'
-//       />
-//     </Box>
-//   );
-// };
-
 const ThinkingBubble = () => {
   const theme = useTheme();
   return <ThinkingBubbleStyled theme={theme} sx={{ marginBottom: '-5px' }} />;
@@ -394,30 +318,3 @@ const SendButton = ({ audioFile, isAudioResponse, filterMessageObjects, messages
     </Grid>
   );
 };
-
-// const MessageInput = ({ message, setMessage, isAudioResponse, handleSendMessage }) => {
-//   const handleInputChange = (event) => {
-//     setMessage(event.target.value);
-//   };
-//   const handleKeyPress = (event) => {
-//     if (event.key === 'Enter') {
-//       handleSendMessage();
-//     }
-//   };
-
-//   return (
-//     <Box sx={{ display: 'flex', alignItems: 'center', marginTop: 2 }}>
-//       <TextField
-//         variant='outlined'
-//         fullWidth
-//         label='Type your message'
-//         value={message}
-//         onChange={handleInputChange}
-//         onKeyPress={handleKeyPress}
-//       />
-//       <IconButton color='primary' onClick={() => handleSendMessage(isAudioResponse)} disabled={message.trim() === ''}>
-//         <SendIcon />
-//       </IconButton>
-//     </Box>
-//   );
-// };
